@@ -33,7 +33,13 @@ public class LanProxyServer implements AutoCloseable {
 
 		datagramChannel= DatagramChannel.open();
 		try {
-			serverSocketChannel = ServerSocketChannel.open().bind(new InetSocketAddress(port));
+			serverSocketChannel = ServerSocketChannel.open();
+			try {
+				serverSocketChannel.bind(new InetSocketAddress(port));
+			} catch (IOException e) {
+				serverSocketChannel.close();
+				throw e;
+			}
 		} catch (IOException e) {
 			datagramChannel.close();
 			throw e;
