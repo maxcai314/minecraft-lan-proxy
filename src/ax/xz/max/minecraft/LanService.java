@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 public record LanService(InetAddress address, int port, String motd) {
 	public String getPingResponse() {
-		return "[MOTD]" + motd + "[/MOTD][AD]" + port + "[/AD]";
+		return "[MOTD]" + motd + "[/MOTD][AD]" + port + "[/AD]"; // minecraft protocol is scuffed
 	}
 
 	public ByteBuffer getPayload() {
