@@ -88,7 +88,7 @@ public class LanProxyServer implements AutoCloseable {
 
 	private static void forwardPackets(ReadableByteChannel socketChannelIn, WritableByteChannel socketChannelOut) {
 		try {
-			ByteBuffer inputBuffer = ByteBuffer.allocateDirect(4096); // 1 page
+			ByteBuffer inputBuffer = ByteBuffer.allocateDirect(8 * 4096); // 1 page
 
 			while (!Thread.interrupted()) {
 				inputBuffer.clear();
